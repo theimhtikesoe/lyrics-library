@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rhyzoe Lyrics Preview</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>🎤 Rhyzoe Lyrics Preview</h1>
+    <select id="themeSelector">
+      <option value="drill-bars.json">Drill</option>
+      <option value="heartbreak-bars.json">Heartbreak</option>
+
+    </select>
+    <button onclick="loadRandomBar()">🎲 Random Bar</button>
+    <div class="bar-output" id="barOutput">Click above to see a line.</div>
+  </div>
+  
+
+  <script>
+    function loadRandomBar() {
+      const file = document.getElementById("themeSelector").value;
+      fetch("bars/" + file)
+        .then(response => response.json())
+        .then(data => {
+          const randomIndex = Math.floor(Math.random() * data.length);
+          document.getElementById("barOutput").innerText = data[randomIndex].content;
+        });
+    }
+  </script>
+</body>
+</html>
