@@ -18,9 +18,23 @@
     <button onclick="loadRandomBar()">🎲 Random Bar</button>
     <div class="bar-output" id="barOutput">Click above to see a line.</div>
   </div>
-  
+
+  <audio autoplay loop muted>
+  <source src="https://files.catbox.moe/7kg3cv.mp3" type="audio/mpeg">
+</audio>
+<button onclick="copyBar()">📋 Copy Line</button>
+
 
   <script>
+    
+    function copyBar() {
+  const text = document.getElementById("barOutput").innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    alert("Copied!");
+  });
+}
+
+    
     function loadRandomBar() {
       const file = document.getElementById("themeSelector").value;
       fetch("bars/" + file)
